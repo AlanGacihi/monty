@@ -45,6 +45,7 @@ typedef struct glob_s
 } glob_t;
 
 extern glob_t glob;
+extern char* strdup(const char*);
 
 char *readline(int fd);
 void push_s(stack_t **stack, unsigned int line_number);

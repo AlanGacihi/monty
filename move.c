@@ -43,7 +43,26 @@ void push_s(stack_t **stack, unsigned int line_number)
  */
 void push_q(stack_t **stack, unsigned int line_number)
 {
-	
+	int n;
+	stack_t *new;
+
+	n = number(*stack, strtok(NULL, DELIMS), line_number);
+
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free(glob.line);
+		free(glob.line_copy);
+		exit(EXIT_FAILURE);
+	}
+
+	new->n = n;
+	new->next = *stack;
+	new->prev = NULL;
+	if (*stack != NULL)
+		(*stack)->prev = new;
+	*stack = new;
 }
 
 /**
