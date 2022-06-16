@@ -1,6 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define DELIMS " \t"
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -31,6 +33,26 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-char *_getline(int fd, char **buffer);
+/**
+ * struct glob_s - Structure for global variable.
+ * @line: Result of getline on file.
+ * @line_copy: Copy of line.
+ */
+typedef struct glob_s
+{
+	char *line;
+	char *line_copy;
+} glob_t;
+
+extern glob_t glob;
+
+char *readline(int fd);
+void push_s(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void run(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void push_q(stack_t **stack, unsigned int line_number);
+void free_list(stack_t *head);
 
 #endif /* MONTY_H */
