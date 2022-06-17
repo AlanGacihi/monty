@@ -1,12 +1,6 @@
-# Hello Vidosa
-iusiubv fjfn fdknof fojndfon fjnf
-pall
-push
-push 5
-push 7686
-pall
-#monty
-
-pop
-pall
-pint
+push 1
+push 1024
+push -0
+push -1
+push -1024
+push 123a

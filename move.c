@@ -111,7 +111,7 @@ int number(stack_t *head, char *s, unsigned int line_number)
 
 	var = strtol(s, &endptr, 10);
 
-	if (strlen(endptr) == strlen(s))
+	if (*endptr || strlen(endptr) == strlen(s))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(glob.line);
