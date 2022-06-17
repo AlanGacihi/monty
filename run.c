@@ -50,7 +50,7 @@ void run(stack_t **stack, unsigned int line_number)
 		}
 		i++;
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, glob.line);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, glob.line_copy);
 	free(glob.line_copy);
 	exit(EXIT_FAILURE);
 }
