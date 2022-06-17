@@ -52,4 +52,5 @@ void run(stack_t **stack, unsigned int line_number)
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, glob.line);
 	free(glob.line_copy);
+	exit(EXIT_FAILURE);
 }

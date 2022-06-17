@@ -24,14 +24,14 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(2, "Usage: monty file\n", 18);
+		write(2, "USAGE: monty file\n", 18);
 		exit(EXIT_FAILURE);
 	}
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
-		fprintf(stderr, "Error: Cannot open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
