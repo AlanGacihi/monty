@@ -16,7 +16,7 @@ void run(stack_t **stack, unsigned int line_number)
 	int i = 0;
 	instruction_t instructions[] = {{"push", push_s}, {"pop", pop},
 					{"pall", pall}, {"pint", pint},
-					{NULL, NULL}};
+					{"nop", nop}, {NULL, NULL}};
 
 	glob.line_copy = strdup(glob.line);
 	if (glob.line_copy[0] == '\0' || strcmp(glob.line_copy, "nop") == 0

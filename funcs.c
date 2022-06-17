@@ -53,3 +53,13 @@ void pint(stack_t **stack, unsigned int line_number)
 	}
 	printf("%d\n", (*stack)->n);
 }
+
+/**
+ * nop - Does nothing"
+ * @stack: Pointer to stack.
+ * @line_number: Line number
+ */
+void nop(__attribute__((unused)) stack_t **stack,
+	 __attribute__((unused)) unsigned int line_number)
+{
+}
