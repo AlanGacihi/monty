@@ -48,6 +48,7 @@ extern glob_t glob;
 extern char* strdup(const char*);
 
 char *readline(int fd);
+size_t stack_len(const stack_t *h);
 void push_s(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void run(stack_t **stack, unsigned int line_number);
