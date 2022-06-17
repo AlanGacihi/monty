@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+glob_t glob;
+
+int isascii(int c);
+
 /**
  * pall - prints all the elements of a list.
  * @stack: Head of the list.
@@ -32,7 +36,7 @@ void pint(stack_t **stack, unsigned int line_number)
 	if (h == NULL)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		free(glob.line_copy);
+		free(glob.line);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
@@ -73,7 +77,7 @@ void pchar(stack_t **stack, unsigned int line_number)
  * @stack: double pointer to top of stack
  * @line_number: Line number
  */
-void pstr(stack_t **stack, unsigned int line_number)
+void pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 
@@ -91,4 +95,17 @@ void pstr(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 	}
 	putchar('\n');
+}
+
+/**
+ * isascii - Check if a char is valid ASCII
+ * @c: char to check
+ *
+ * Return: 0 no ascii, 1 on ascii
+ */
+int isascii(int c)
+{
+	if (c < 0 || c > 127)
+		return (0);
+	return (1);
 }

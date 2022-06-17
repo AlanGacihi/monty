@@ -24,7 +24,7 @@ void push_s(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(glob.line);
-		free(glob.line_copy);
+		free_list(*stack);
 		exit(EXIT_FAILURE);
 	}
 
@@ -45,7 +45,9 @@ void push_q(stack_t **stack, unsigned int line_number)
 {
 	int n;
 	stack_t *new;
+	stack_t *tmp;
 
+	tmp = *stack;
 	n = number(*stack, strtok(NULL, DELIMS), line_number);
 
 	new = malloc(sizeof(stack_t));
@@ -53,16 +55,21 @@ void push_q(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(glob.line);
-		free(glob.line_copy);
 		exit(EXIT_FAILURE);
 	}
 
 	new->n = n;
-	new->next = *stack;
-	new->prev = NULL;
-	if (*stack != NULL)
-		(*stack)->prev = new;
-	*stack = new;
+	new->next = NULL;
+	if (!*stack)
+	{
+		new->prev = *stack;
+		*stack = new;
+		return;
+	}
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+	new->prev = tmp;
 }
 
 /**
@@ -77,7 +84,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		free(glob.line_copy);
+		free(glob.line);
 		exit(EXIT_FAILURE);
 	}
 
@@ -104,7 +111,6 @@ int number(stack_t *head, char *s, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(glob.line);
-		free(glob.line_copy);
 		free_list(head);
 		exit(EXIT_FAILURE);
 	}
@@ -115,10 +121,34 @@ int number(stack_t *head, char *s, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free(glob.line);
-		free(glob.line_copy);
 		free_list(head);
 		exit(EXIT_FAILURE);
 	}
 
 	return (var);
+}
+
+/**
+ * swap - Swap the top two element of the stack
+ * @stack: Pointer to the head of the stack
+ * @line_number: line number
+ */
+void swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *first, *second;
+	int temp;
+
+	if (!stack || !*stack || !(*stack)->next)
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short", line_number);
+		free(glob.line);
+		free_list(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	first = *stack;
+	second = first->next;
+	temp = second->n;
+	second->n = first->n;
+	first->n = temp;
 }

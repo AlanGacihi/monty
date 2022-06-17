@@ -27,21 +27,3 @@ void nop(__attribute__((unused)) stack_t **stack,
 	 __attribute__((unused)) unsigned int line_number)
 {
 }
-
-/**
- * stack_len - Determines the size of a linked list.
- * @h: Head of the list.
- *
- * Return: Number of nodes of the list.
- */
-size_t stack_len(const stack_t *h)
-{
-	size_t counter = 0;
-
-	while (h)
-	{
-		h = h->next;
-		counter++;
-	}
-	return (counter);
-}

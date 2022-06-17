@@ -36,21 +36,26 @@ typedef struct instruction_s
 /**
  * struct glob_s - Structure for global variable.
  * @line: Result of getline on file.
- * @line_copy: Copy of line.
  */
 typedef struct glob_s
 {
 	char *line;
-	char *line_copy;
 } glob_t;
 
 extern glob_t glob;
 extern char* strdup(const char*);
 
 char *readline(int fd);
-size_t stack_len(const stack_t *h);
 void push_s(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void divv(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
 void run(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
