@@ -18,7 +18,7 @@ void run(stack_t **stack, unsigned int line_number)
 					{"add", add}, {"mul", mul},
 					{"mod", mod}, {"pchar", pchar},
 					{"pstr", pstr}, {"swap", swap},
-					{NULL, NULL}};
+					{"div", divv}, {NULL, NULL}};
 
 	if (glob.line[0] == '\0' || strcmp(glob.line, "nop") == 0
 	    || glob.line[0] == '#')
