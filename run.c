@@ -23,7 +23,6 @@ void run(stack_t **stack, unsigned int line_number)
 	if (glob.line[0] == '\0' || strcmp(glob.line, "nop") == 0
 	    || glob.line[0] == '#')
 	{
-		free(glob.line);
 		return;
 	}
 
@@ -31,13 +30,11 @@ void run(stack_t **stack, unsigned int line_number)
 	if (strcmp(glob.line, "queue") == 0)
 	{
 		instructions[0].f = push_q;
-		free(glob.line);
 		return;
 	}
 	if (strcmp(glob.line, "stack") == 0)
 	{
 		instructions[0].f = push_s;
-		free(glob.line);
 		return;
 	}
 
