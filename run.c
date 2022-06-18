@@ -12,7 +12,7 @@
 void run(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
-	instruction_t instructions[] = {{"push", push_s}, {"pop", pop},
+	instruction_t instructions[] = {{"push", push}, {"pop", pop},
 					{"pall", pall}, {"pint", pint},
 					{"nop", nop}, {"sub", sub},
 					{"add", add}, {"mul", mul},
@@ -30,12 +30,12 @@ void run(stack_t **stack, unsigned int line_number)
 	glob.line = strtok(glob.line, DELIMS);
 	if (strcmp(glob.line, "queue") == 0)
 	{
-		instructions[0].f = push_q;
+		glob.format = "queue";
 		return;
 	}
 	if (strcmp(glob.line, "stack") == 0)
 	{
-		instructions[0].f = push_s;
+		glob.format = "stack";
 		return;
 	}
 

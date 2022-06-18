@@ -40,6 +40,7 @@ typedef struct instruction_s
 typedef struct glob_s
 {
 	char *line;
+	char *format;
 } glob_t;
 
 extern glob_t glob;
@@ -61,7 +62,7 @@ void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
-void push_q(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void free_list(stack_t *head);
 

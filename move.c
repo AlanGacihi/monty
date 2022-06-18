@@ -17,6 +17,7 @@ void push_s(stack_t **stack, unsigned int line_number)
 	int n;
 	stack_t *new;
 
+	printf("S\n");
 	n = number(*stack, strtok(NULL, DELIMS), line_number);
 
 	new = malloc(sizeof(stack_t));
@@ -37,17 +38,16 @@ void push_s(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * push_q - Adds an element to a queue.
+ * push - Adds an element to a queue.
  * @stack: Pointer to queue.
  * @line_number: Line number
  */
-void push_q(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
 	int n;
 	stack_t *new;
 	stack_t *tmp;
 
-	tmp = *stack;
 	n = number(*stack, strtok(NULL, DELIMS), line_number);
 
 	new = malloc(sizeof(stack_t));
@@ -58,18 +58,30 @@ void push_q(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	new->n = n;
-	new->next = NULL;
-	if (!*stack)
+	if (strcmp(glob.format, "queue") == 0)
 	{
-		new->prev = *stack;
-		*stack = new;
+		tmp = *stack;
+		new->n = n;
+		new->next = NULL;
+		if (!*stack)
+		{
+			new->prev = *stack;
+			*stack = new;
+			return;
+		}
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+		new->prev = tmp;
 		return;
 	}
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-	new->prev = tmp;
+
+	new->n = n;
+	new->next = *stack;
+	new->prev = NULL;
+	if (*stack != NULL)
+		(*stack)->prev = new;
+	*stack = new;
 }
 
 /**
