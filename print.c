@@ -64,7 +64,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 
 	if (!(i >= 0 && i <= 127))
 	{
-		printf("L%u: can't pchar, value out of range", line_number);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		free(glob.line);
 		free_list(*stack);
 		exit(EXIT_FAILURE);

@@ -1,3 +1,2 @@
-push 12
-push 0
-mod
+push -1
+pchar
