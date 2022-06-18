@@ -102,6 +102,7 @@ void mod(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: division by zero\n", line_number);
 		free(glob.line);
 		free_list(*stack);
+		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n %= (*stack)->n;
 	pop(stack, line_number);
